@@ -42,9 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps',
     'rest_framework',
+
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,6 +55,52 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# gpt 사용, 프롬포트 : CORS_ALLOW_ALL_ORIGINS 이거 뭔뜻이야
+# response
+# CORS_ALLOW_ALL_ORIGINS는 Django 프로젝트에서 Cross-Origin Resource Sharing (CORS)을 설정할 때 사용되는 설정 변수입니다.
+# 이 변수를 True로 설정하면, 어떤 출처(origin)에서도 해당 서버에 대한 요청을 허용하게 됩니다.
+# 즉, 외부 웹사이트에서 자유롭게 해당 Django 애플리케이션의 API에 접근할 수 있도록 허용하는 것입니다.
+# 기본적으로, CORS 정책은 보안상의 이유로 다른 출처의 요청을 제한하지만, CORS_ALLOW_ALL_ORIGINS = True로 설정하면 모든 출처에서의 요청을 허용하므로 개발 단계에서 편리할 수 있지만,
+# 보안 위험이 따를 수 있습니다. 따라서, 프로덕션 환경에서는 사용에 주의하고 특정 출처만 허용하는 방식(CORS_ALLOWED_ORIGINS)을 고려하는 것이 좋습니다.
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+# CORS_ALLOW_HEADERS = [
+#     "accept",
+#     "accept-encoding",
+#     "authorization",
+#     "content-type",
+#     "dnt",
+#     "origin",
+#     "user-agent",
+#     "x-csrftoken",
+#     "x-requested-with",
+# ]
+#
+# CORS_ALLOWED_ORIGINS = [
+#     # "https://example.com", 프론트 배포 후 수정
+#     # "https://sub.example.com", 프론트 배포 후 수정
+#
+#     # 프론트 구현을 위한 8000, 3000, 8080 포트에서 접근 허용
+#     "http://localhost:8080",
+#     "http://127.0.0.1:8080",
+#     "http://localhost:8000",
+#     "http://127.0.0.1:8000",
+#     "http://localhost:3000",
+#     "http://127.0.0.1:3000",
+# ]
+#
+# CORS_ALLOW_METHODS = [
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# ]
+#
+# CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'config.urls'
 
